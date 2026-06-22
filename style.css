@@ -1,0 +1,344 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: "Inter", Arial, sans-serif;
+    background: #050505;
+    color: #ffffff;
+    overflow-x: hidden;
+    position: relative;
+    min-height: 100vh;
+}
+
+/* ===== Animated Background ===== */
+
+.bg-glow {
+    position: fixed;
+    inset: 0;
+    z-index: -2;
+    overflow: hidden;
+    pointer-events: none;
+}
+
+.bg-glow::before,
+.bg-glow::after {
+    content: "";
+    position: absolute;
+    border-radius: 50%;
+    filter: blur(120px);
+}
+
+.bg-glow::before {
+    width: 500px;
+    height: 500px;
+    background: rgba(255, 0, 0, 0.3);
+    top: -100px;
+    left: -100px;
+    animation: floatOne 12s ease-in-out infinite alternate;
+}
+
+.bg-glow::after {
+    width: 600px;
+    height: 600px;
+    background: rgba(150, 0, 0, 0.25);
+    bottom: -150px;
+    right: -150px;
+    animation: floatTwo 16s ease-in-out infinite alternate;
+}
+
+body::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    z-index: -1;
+    pointer-events: none;
+
+    background-image:
+        linear-gradient(rgba(255, 0, 0, 0.03) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255, 0, 0, 0.03) 1px, transparent 1px);
+
+    background-size: 60px 60px;
+    animation: gridMove 18s linear infinite;
+}
+
+/* ===== Navigation ===== */
+
+nav {
+    width: min(1200px, 90%);
+    margin: 20px auto;
+    padding: 18px 32px;
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    background: rgba(15, 15, 15, 0.65);
+    border: 1px solid rgba(255, 0, 0, 0.15);
+    border-radius: 20px;
+
+    backdrop-filter: blur(14px);
+}
+
+nav h1 {
+    color: #ff2a2a;
+    font-size: 2rem;
+    letter-spacing: 6px;
+}
+
+.links {
+    display: flex;
+    gap: 30px;
+}
+
+.links a {
+    color: #d8d8d8;
+    text-decoration: none;
+    transition: 0.3s;
+}
+
+.links a:hover {
+    color: #ff2a2a;
+}
+
+/* ===== Hero ===== */
+
+.hero {
+    min-height: 100vh;
+}
+
+.hero-content {
+    width: min(1200px, 90%);
+    margin: 0 auto;
+    padding-top: 140px;
+}
+
+.badge {
+    display: inline-block;
+    padding: 10px 18px;
+
+    color: #ff4d4d;
+    background: rgba(255, 0, 0, 0.08);
+
+    border: 1px solid rgba(255, 0, 0, 0.2);
+    border-radius: 999px;
+}
+
+.hero-content h2 {
+    font-size: clamp(3rem, 7vw, 5rem);
+    line-height: 1.1;
+    max-width: 800px;
+    margin: 24px 0;
+}
+
+.hero-content p {
+    max-width: 650px;
+    color: #b5b5b5;
+    line-height: 1.8;
+    font-size: 1.1rem;
+}
+
+.btn {
+    display: inline-block;
+    margin-top: 35px;
+    padding: 16px 30px;
+
+    color: #fff;
+    text-decoration: none;
+
+    background: linear-gradient(135deg, #8b0000, #ff2a2a);
+    border-radius: 14px;
+
+    transition: 0.3s;
+    box-shadow: 0 10px 30px rgba(255, 0, 0, 0.25);
+}
+
+.btn:hover {
+    transform: translateY(-4px);
+}
+
+/* ===== Main Sections ===== */
+
+main {
+    width: min(1200px, 90%);
+    margin: auto;
+}
+
+section {
+    margin-bottom: 100px;
+}
+
+h3 {
+    font-size: 2rem;
+    margin-bottom: 30px;
+    color: #ff2a2a;
+}
+
+/* ===== Cards ===== */
+
+.card,
+.project {
+    background: rgba(20, 20, 20, 0.7);
+    border: 1px solid rgba(255, 0, 0, 0.12);
+
+    border-radius: 24px;
+    padding: 30px;
+
+    backdrop-filter: blur(14px);
+    box-shadow: 0 15px 40px rgba(255, 0, 0, 0.08);
+}
+
+.card p,
+.project p {
+    color: #b5b5b5;
+    line-height: 1.8;
+}
+
+/* ===== Skills ===== */
+
+.grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 20px;
+}
+
+.skill {
+    padding: 22px;
+
+    text-align: center;
+    font-weight: 600;
+
+    background: rgba(18, 18, 18, 0.9);
+    border: 1px solid rgba(255, 0, 0, 0.15);
+
+    border-radius: 18px;
+    transition: 0.3s;
+}
+
+.skill:hover {
+    transform: translateY(-6px);
+    border-color: rgba(255, 0, 0, 0.4);
+}
+
+/* ===== Projects ===== */
+
+#projects {
+    display: grid;
+    gap: 25px;
+}
+
+.project h4 {
+    margin-bottom: 12px;
+    font-size: 1.3rem;
+}
+
+.project:hover {
+    transform: translateY(-8px);
+    transition: 0.3s;
+}
+
+.placeholder {
+    border-style: dashed;
+}
+
+/* ===== Reveal Animation ===== */
+
+.reveal {
+    opacity: 0;
+    transform: translateY(40px);
+    transition: 0.8s ease;
+}
+
+.reveal.active {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* ===== Animations ===== */
+
+@keyframes floatOne {
+    from {
+        transform: translate(0, 0) scale(1);
+    }
+
+    to {
+        transform: translate(150px, 100px) scale(1.2);
+    }
+}
+
+@keyframes floatTwo {
+    from {
+        transform: translate(0, 0) scale(1);
+    }
+
+    to {
+        transform: translate(-150px, -100px) scale(1.15);
+    }
+}
+
+@keyframes gridMove {
+    from {
+        transform: translateY(0);
+    }
+
+    to {
+        transform: translateY(60px);
+    }
+}
+
+/* ===== Responsive ===== */
+
+@media (max-width: 768px) {
+    nav {
+        flex-direction: column;
+        gap: 20px;
+    }
+
+    .links {
+        gap: 16px;
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+
+    .hero-content {
+        padding-top: 100px;
+    }
+
+    .hero-content h2 {
+        font-size: 2.8rem;
+    }
+}
+
+.download-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+
+    margin-top: 20px;
+    padding: 14px 24px;
+
+    color: #fff;
+    text-decoration: none;
+    font-weight: 600;
+
+    background: rgba(255, 0, 0, 0.12);
+    border: 1px solid rgba(255, 0, 0, 0.3);
+    border-radius: 14px;
+
+    backdrop-filter: blur(10px);
+    transition: all 0.3s ease;
+}
+
+.download-btn:hover {
+    background: linear-gradient(135deg, #8b0000, #ff2a2a);
+    border-color: transparent;
+
+    transform: translateY(-3px);
+    box-shadow: 0 0 25px rgba(255, 0, 0, 0.35);
+}
