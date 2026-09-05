@@ -101,13 +101,33 @@ window.addEventListener('scroll', () => {
     });
 });
 
-const roveryProject = document.getElementById('rovery-project');
+// ===== Age =====
 
-const downloadButton = document.createElement('a');
+const birthDate = new Date(2014, 8, 21); 
+// السنة, الشهر - 1, اليوم
+// 2016, 4, 20 = May 20, 2016
 
-downloadButton.href = 'Files\RoveryNetworker.rbxm';
-downloadButton.download = '';
-downloadButton.className = 'download-btn';
-downloadButton.textContent = 'Download Package';
+function updateAge() {
+    const today = new Date();
 
-roveryProject.appendChild(downloadButton);
+    let age = today.getFullYear() - birthDate.getFullYear();
+
+    const birthdayPassed =
+        today.getMonth() > birthDate.getMonth() ||
+        (
+            today.getMonth() === birthDate.getMonth() &&
+            today.getDate() >= birthDate.getDate()
+        );
+
+    if (!birthdayPassed) {
+        age--;
+    }
+
+    const ageElement = document.getElementById("Age");
+
+    if (ageElement) {
+        ageElement.textContent = `My Age: ${age}`;
+    }
+}
+
+updateAge();
